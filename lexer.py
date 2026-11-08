@@ -66,13 +66,13 @@ def t_ID(t):
 
 # --- Comentarios largos: --[[ ... ]], --[=[ ... ]=], etc. ---
 def t_COMENTARIO_LARGO(t):
-    r'--\[(=*)\[[\s\S]*?\]\1\]'
+    r'--\[\[[\s\S]*?\]\]|--\[=\[[\s\S]*?\]=\]|--\[==\[[\s\S]*?\]==\]'
     t.lexer.lineno += t.value.count('\n')
 
 
 # --- Comentarios largos sin cerrar ---
 def t_COMENTARIO_SIN_CERRAR(t):
-    r'--\[(=*)\[[\s\S]*'
+    r'--\[=*\[[\s\S]*'
     errores.append(
         f"Error léxico en la línea {t.lexer.lineno}: comentario largo sin cerrar."
     )
