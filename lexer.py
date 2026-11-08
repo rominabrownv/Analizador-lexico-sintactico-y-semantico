@@ -1,4 +1,3 @@
-import re
 import ply.lex as lex
 from datetime import datetime
 
@@ -12,7 +11,8 @@ reservadas = {
     'until': 'UNTIL', 'while': 'WHILE',
 }
 
-errores = []
+errores = []   # cada error es una tupla (linea, columna, mensaje)
+
 
 tokens = ['ID', 'INTEGER', 'FLOAT', 'STRING'] + list(reservadas.values())
  
@@ -73,9 +73,7 @@ def t_COMENTARIO_LARGO(t):
 # --- Comentarios largos sin cerrar ---
 def t_COMENTARIO_SIN_CERRAR(t):
     r'--\[=*\[[\s\S]*'
-    errores.append(
-        f"Error léxico en la línea {t.lexer.lineno}: comentario largo sin cerrar."
-    )
+    agregar_error(t.lexer, t.lexpos, 'comentario largo sin cerrar')
     t.lexer.lineno += t.value.count('\n')
 
 
@@ -87,8 +85,6 @@ def t_COMENTARIO_CORTO(t):
 
 
 #-- Funciones Generales del analizador---
-
-errores = []   # cada error es una tupla (linea, columna, mensaje)
  
 def columna(texto, posicion):
     inicio_linea = texto.rfind('\n', 0, posicion) + 1
@@ -102,6 +98,13 @@ def agregar_error(lexer, posicion, mensaje):
 def t_error(t):
     agregar_error(t.lexer, t.lexpos, 'carácter ilegal ' + repr(t.value[0]))
     t.lexer.skip(1)
+
+# --- Saltos de línea y espacios (parte común) ---
+t_ignore = ' \t\r'
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
  
 lexer = lex.lex()
  
@@ -119,3 +122,4 @@ def analizar(texto):
         lexema = texto[tok.lexpos:lexer.lexpos]
         lista.append((tok.type, lexema, tok.value, tok.lineno, columna(texto, tok.lexpos)))
     return lista, list(errores)
+
