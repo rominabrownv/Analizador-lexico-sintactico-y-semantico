@@ -13,8 +13,7 @@ reservadas = {
 
 errores = []   # cada error es una tupla (linea, columna, mensaje)
 
-
-tokens = ['ID', 'INTEGER', 'FLOAT', 'STRING'] + list(reservadas.values())
+tokens_id_tipos = ['ID', 'INTEGER', 'FLOAT', 'STRING']
  
  
 # Cadenas largas: [[ ... ]]  (pueden tener varias líneas)
@@ -54,6 +53,67 @@ def t_INTEGER(t):
         t.value = int(t.value)
     return t
  
+# ----------------------Joseph-----------------------
+tokens_operadores_delimitadores = [
+    # Operadores aritméticos
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'FLOORDIV', 'MOD', 'POW',
+    # Operadores relacionales
+    'EQ', 'NE', 'LE', 'GE', 'LT', 'GT',
+    # Operadores lógicos y de bits
+    'BITAND', 'BITOR', 'BITXOR', 'LSHIFT', 'RSHIFT',
+    # Asignación, concatenación y longitud
+    'ASSIGN', 'CONCAT', 'LEN',
+    # Delimitadores y puntuación
+    'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET',
+    'SEMICOLON', 'COMMA', 'DOT', 'VARARG', 'COLON', 'DBLCOLON'
+]
+
+tokens = tokens_id_tipos + tokens_operadores_delimitadores + list(reservadas.values())
+
+# --- Reglas de Expresiones Regulares para Operadores y Delimitadores ---
+
+# Operadores aritméticos
+t_FLOORDIV = r'//'
+t_POW      = r'\^'
+t_PLUS     = r'\+'
+t_MINUS    = r'-'
+t_TIMES    = r'\*'
+t_DIVIDE   = r'/'
+t_MOD      = r'%'
+
+# Operadores relacionales
+t_EQ       = r'=='
+t_NE       = r'~='
+t_LE       = r'<='
+t_GE       = r'>='
+t_LT       = r'<'
+t_GT       = r'>'
+
+# Operadores de bits y lógicos adicionales
+t_BITAND   = r'&'
+t_BITOR    = r'\|'
+t_BITXOR   = r'~'
+t_LSHIFT   = r'<<'
+t_RSHIFT   = r'>>'
+
+# Asignación, concatenación y longitud
+t_ASSIGN   = r'='
+t_CONCAT   = r'\.\.'
+t_LEN      = r'\#'
+
+# Delimitadores y puntuación
+t_DBLCOLON = r'::'
+t_VARARG   = r'\.\.\.'
+t_COLON    = r':'
+t_DOT      = r'\.'
+t_LPAREN   = r'\('
+t_RPAREN   = r'\)'
+t_LBRACE   = r'\{'
+t_RBRACE   = r'\}'
+t_LBRACKET = r'\['
+t_RBRACKET = r'\]'
+t_SEMICOLON= r';'
+t_COMMA    = r','
 
 #------------------------Romina-----------------------
 
