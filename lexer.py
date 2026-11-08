@@ -37,6 +37,12 @@ def t_STRING_SIMPLE(t):
     t.type = 'STRING'
     return t
 
+# Detección de números mal formados
+def t_ERROR_NUMERO(t):
+    r'\d+[a-zA-Z_]\w*'
+    agregar_error(t.lexer, t.lexpos, f"número mal formado '{t.value}'")
+    t.lexer.skip(len(t.value))
+
 # Números decimales 
 def t_FLOAT(t):
     r'(\d+\.\d*|\.\d+)([eE][+-]?\d+)?|\d+[eE][+-]?\d+'
