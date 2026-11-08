@@ -83,3 +83,39 @@ def t_COMENTARIO_SIN_CERRAR(t):
 def t_COMENTARIO_CORTO(t):
     r'--[^\n]*'
     pass
+
+
+
+#-- Funciones Generales del analizador---
+
+errores = []   # cada error es una tupla (linea, columna, mensaje)
+ 
+def columna(texto, posicion):
+    inicio_linea = texto.rfind('\n', 0, posicion) + 1
+    return posicion - inicio_linea + 1
+ 
+ 
+def agregar_error(lexer, posicion, mensaje):
+    linea = lexer.lexdata.count('\n', 0, posicion) + 1
+    errores.append((linea, columna(lexer.lexdata, posicion), mensaje))
+
+def t_error(t):
+    agregar_error(t.lexer, t.lexpos, 'carácter ilegal ' + repr(t.value[0]))
+    t.lexer.skip(1)
+ 
+lexer = lex.lex()
+ 
+def analizar(texto):
+    # Devuelve (lista de tokens, lista de errores).
+    # Cada token es una tupla (tipo, lexema, valor, linea, columna).
+    del errores[:]
+    lexer.lineno = 1
+    lexer.input(texto)
+    lista = []
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        lexema = texto[tok.lexpos:lexer.lexpos]
+        lista.append((tok.type, lexema, tok.value, tok.lineno, columna(texto, tok.lexpos)))
+    return lista, list(errores)
