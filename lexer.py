@@ -1,7 +1,6 @@
 import ply.lex as lex
 from datetime import datetime
 
-#---------------Christian-------------------
 reservadas = {
     'and': 'AND', 'break': 'BREAK', 'do': 'DO', 'else': 'ELSE',
     'elseif': 'ELSEIF', 'end': 'END', 'false': 'FALSE', 'for': 'FOR',
@@ -37,27 +36,26 @@ def t_STRING_SIMPLE(t):
     t.type = 'STRING'
     return t
 
-# Detección de números mal formados
-def t_ERROR_NUMERO(t):
-    r'\d+[a-zA-Z_]\w*'
-    agregar_error(t.lexer, t.lexpos, f"número mal formado '{t.value}'")
-    t.lexer.skip(len(t.value))
-
 # Números decimales 
 def t_FLOAT(t):
     r'(\d+\.\d*|\.\d+)([eE][+-]?\d+)?|\d+[eE][+-]?\d+'
     t.value = float(t.value)
     return t
  
- 
-# Números enteros y hexadecimales 
+# Números enteros y hexadecimales
 def t_INTEGER(t):
-    r'0[xX][0-9a-fA-F]+|\d+'
+    r'(?:0[xX][0-9a-fA-F]+|\d+)(?![a-zA-Z_0-9])'
     if t.value[:2] in ('0x', '0X'):
         t.value = int(t.value, 16)
     else:
         t.value = int(t.value)
     return t
+
+# Detección de números mal formados: 3x  0xG  1e
+
+def t_ERROR_NUMERO(t):
+    r'\d+[a-zA-Z_]\w*'
+    agregar_error(t.lexer, t.lexpos, f"número mal formado '{t.value}'")
  
 # ----------------------Joseph-----------------------
 tokens_operadores_delimitadores = [
