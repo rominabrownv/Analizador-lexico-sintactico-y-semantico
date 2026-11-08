@@ -14,7 +14,7 @@ reservadas = {
 
 errores = []
 
-tokens_Christian = ['ID', 'INTEGER', 'FLOAT', 'STRING'] + list(reservadas.values())
+tokens = ['ID', 'INTEGER', 'FLOAT', 'STRING'] + list(reservadas.values())
  
  
 # Cadenas largas: [[ ... ]]  (pueden tener varias líneas)
@@ -38,8 +38,22 @@ def t_STRING_SIMPLE(t):
     t.type = 'STRING'
     return t
 
-
-
+# Números decimales 
+def t_FLOAT(t):
+    r'(\d+\.\d*|\.\d+)([eE][+-]?\d+)?|\d+[eE][+-]?\d+'
+    t.value = float(t.value)
+    return t
+ 
+ 
+# Números enteros y hexadecimales 
+def t_INTEGER(t):
+    r'0[xX][0-9a-fA-F]+|\d+'
+    if t.value[:2] in ('0x', '0X'):
+        t.value = int(t.value, 16)
+    else:
+        t.value = int(t.value)
+    return t
+ 
 
 #------------------------Romina-----------------------
 
