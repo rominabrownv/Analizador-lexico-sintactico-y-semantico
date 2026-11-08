@@ -1,0 +1,579 @@
+LOG DE PRUEBA DEL ANALIZADOR LEXICO (Lua 5.5)
+Usuario: Christian777-Ing
+Fecha: 08/11/2026 01:22:51
+Algoritmo: algoritmoDePrueba1.lua
+
+TOKENS RECONOCIDOS (169)
+Linea 1, col 1: LOCAL  local
+Linea 1, col 7: FUNCTION  function
+Linea 1, col 16: ID  factorial
+Linea 1, col 26: ID  n
+Linea 1, col 3: IF  if
+Linea 1, col 6: ID  n
+Linea 1, col 10: INTEGER  0
+Linea 1, col 12: THEN  then
+Linea 1, col 5: RETURN  return
+Linea 1, col 12: NIL  nil
+Linea 1, col 3: ELSEIF  elseif
+Linea 1, col 10: ID  n
+Linea 1, col 15: INTEGER  0
+Linea 1, col 17: OR  or
+Linea 1, col 20: ID  n
+Linea 1, col 25: INTEGER  1
+Linea 1, col 27: THEN  then
+Linea 1, col 5: RETURN  return
+Linea 1, col 12: INTEGER  1
+Linea 1, col 3: END  end
+Linea 1, col 3: LOCAL  local
+Linea 1, col 9: ID  resultado
+Linea 1, col 21: INTEGER  1
+Linea 1, col 3: FOR  for
+Linea 1, col 7: ID  i
+Linea 1, col 11: INTEGER  2
+Linea 1, col 14: ID  n
+Linea 1, col 16: DO  do
+Linea 1, col 5: ID  resultado
+Linea 1, col 17: ID  resultado
+Linea 1, col 29: ID  i
+Linea 1, col 3: END  end
+Linea 1, col 3: RETURN  return
+Linea 1, col 10: ID  resultado
+Linea 1, col 1: END  end
+Linea 1, col 1: LOCAL  local
+Linea 1, col 7: FUNCTION  function
+Linea 1, col 16: ID  fibonacci
+Linea 1, col 26: ID  n
+Linea 1, col 3: LOCAL  local
+Linea 1, col 9: ID  a
+Linea 1, col 12: ID  b
+Linea 1, col 16: INTEGER  0
+Linea 1, col 19: INTEGER  1
+Linea 1, col 3: LOCAL  local
+Linea 1, col 9: ID  i
+Linea 1, col 13: INTEGER  0
+Linea 1, col 3: WHILE  while
+Linea 1, col 9: ID  i
+Linea 1, col 13: ID  n
+Linea 1, col 15: DO  do
+Linea 1, col 5: ID  a
+Linea 1, col 8: ID  b
+Linea 1, col 12: ID  b
+Linea 1, col 15: ID  a
+Linea 1, col 19: ID  b
+Linea 1, col 5: ID  i
+Linea 1, col 9: ID  i
+Linea 1, col 13: INTEGER  1
+Linea 1, col 3: END  end
+Linea 1, col 3: RETURN  return
+Linea 1, col 10: ID  a
+Linea 1, col 1: END  end
+Linea 1, col 1: LOCAL  local
+Linea 1, col 7: FUNCTION  function
+Linea 1, col 16: ID  es_primo
+Linea 1, col 25: ID  n
+Linea 1, col 3: IF  if
+Linea 1, col 6: ID  n
+Linea 1, col 10: INTEGER  2
+Linea 1, col 12: THEN  then
+Linea 1, col 5: RETURN  return
+Linea 1, col 12: FALSE  false
+Linea 1, col 3: END  end
+Linea 1, col 3: LOCAL  local
+Linea 1, col 9: ID  d
+Linea 1, col 13: INTEGER  2
+Linea 1, col 3: WHILE  while
+Linea 1, col 9: ID  d
+Linea 1, col 13: ID  d
+Linea 1, col 18: ID  n
+Linea 1, col 20: DO  do
+Linea 1, col 5: IF  if
+Linea 1, col 8: ID  n
+Linea 1, col 12: ID  d
+Linea 1, col 17: INTEGER  0
+Linea 1, col 19: THEN  then
+Linea 1, col 7: RETURN  return
+Linea 1, col 14: FALSE  false
+Linea 1, col 5: END  end
+Linea 1, col 5: ID  d
+Linea 1, col 9: ID  d
+Linea 1, col 13: INTEGER  1
+Linea 1, col 3: END  end
+Linea 1, col 3: RETURN  return
+Linea 1, col 10: TRUE  true
+Linea 1, col 1: END  end
+Linea 1, col 1: FOR  for
+Linea 1, col 5: ID  k
+Linea 1, col 9: INTEGER  1
+Linea 1, col 12: INTEGER  10
+Linea 1, col 15: DO  do
+Linea 1, col 3: ID  print
+Linea 1, col 9: STRING  "fib("
+Linea 1, col 19: ID  k
+Linea 1, col 24: STRING  ") = "
+Linea 1, col 34: ID  fibonacci
+Linea 1, col 44: ID  k
+Linea 1, col 1: END  end
+Linea 1, col 1: ID  print
+Linea 1, col 7: STRING  "10! = "
+Linea 1, col 19: ID  factorial
+Linea 1, col 29: INTEGER  10
+Linea 1, col 1: LOCAL  local
+Linea 1, col 7: ID  primos
+Linea 1, col 1: LOCAL  local
+Linea 1, col 7: ID  compuestos
+Linea 1, col 20: INTEGER  0
+Linea 1, col 1: FOR  for
+Linea 1, col 5: ID  n
+Linea 1, col 9: INTEGER  1
+Linea 1, col 12: INTEGER  30
+Linea 1, col 15: DO  do
+Linea 1, col 3: IF  if
+Linea 1, col 6: ID  es_primo
+Linea 1, col 15: ID  n
+Linea 1, col 18: AND  and
+Linea 1, col 22: NOT  not
+Linea 1, col 27: ID  n
+Linea 1, col 32: INTEGER  1
+Linea 1, col 35: THEN  then
+Linea 1, col 5: ID  primos
+Linea 1, col 13: ID  primos
+Linea 1, col 22: INTEGER  1
+Linea 1, col 27: ID  n
+Linea 1, col 3: ELSE  else
+Linea 1, col 5: ID  compuestos
+Linea 1, col 18: ID  compuestos
+Linea 1, col 31: INTEGER  1
+Linea 1, col 3: END  end
+Linea 1, col 1: END  end
+Linea 1, col 1: ID  print
+Linea 1, col 7: STRING  "primos: "
+Linea 1, col 21: ID  table
+Linea 1, col 27: ID  concat
+Linea 1, col 34: ID  primos
+Linea 1, col 42: STRING  ", "
+Linea 1, col 1: ID  print
+Linea 1, col 7: STRING  "no primos: "
+Linea 1, col 24: ID  compuestos
+Linea 1, col 1: LOCAL  local
+Linea 1, col 7: ID  candidato
+Linea 1, col 19: INTEGER  100
+Linea 1, col 1: WHILE  while
+Linea 1, col 7: TRUE  true
+Linea 1, col 12: DO  do
+Linea 1, col 3: ID  candidato
+Linea 1, col 15: ID  candidato
+Linea 1, col 27: INTEGER  1
+Linea 1, col 3: IF  if
+Linea 1, col 6: ID  es_primo
+Linea 1, col 15: ID  candidato
+Linea 1, col 26: THEN  then
+Linea 1, col 5: BREAK  break
+Linea 1, col 3: END  end
+Linea 1, col 1: END  end
+Linea 1, col 1: ID  print
+Linea 1, col 7: STRING  "primer primo > 100: "
+Linea 1, col 33: ID  candidato
+
+ERRORES (402)
+Linea 1, col 54: carácter ilegal '\n'
+Linea 2, col 1: carácter ilegal '\n'
+Linea 3, col 6: carácter ilegal ' '
+Linea 3, col 15: carácter ilegal ' '
+Linea 3, col 25: carácter ilegal '('
+Linea 3, col 27: carácter ilegal ')'
+Linea 3, col 28: carácter ilegal '\n'
+Linea 4, col 1: carácter ilegal ' '
+Linea 4, col 2: carácter ilegal ' '
+Linea 4, col 5: carácter ilegal ' '
+Linea 4, col 7: carácter ilegal ' '
+Linea 4, col 8: carácter ilegal '<'
+Linea 4, col 9: carácter ilegal ' '
+Linea 4, col 11: carácter ilegal ' '
+Linea 4, col 16: carácter ilegal '\n'
+Linea 5, col 1: carácter ilegal ' '
+Linea 5, col 2: carácter ilegal ' '
+Linea 5, col 3: carácter ilegal ' '
+Linea 5, col 4: carácter ilegal ' '
+Linea 5, col 11: carácter ilegal ' '
+Linea 5, col 15: carácter ilegal '\n'
+Linea 6, col 1: carácter ilegal ' '
+Linea 6, col 2: carácter ilegal ' '
+Linea 6, col 9: carácter ilegal ' '
+Linea 6, col 11: carácter ilegal ' '
+Linea 6, col 12: carácter ilegal '='
+Linea 6, col 13: carácter ilegal '='
+Linea 6, col 14: carácter ilegal ' '
+Linea 6, col 16: carácter ilegal ' '
+Linea 6, col 19: carácter ilegal ' '
+Linea 6, col 21: carácter ilegal ' '
+Linea 6, col 22: carácter ilegal '='
+Linea 6, col 23: carácter ilegal '='
+Linea 6, col 24: carácter ilegal ' '
+Linea 6, col 26: carácter ilegal ' '
+Linea 6, col 31: carácter ilegal '\n'
+Linea 7, col 1: carácter ilegal ' '
+Linea 7, col 2: carácter ilegal ' '
+Linea 7, col 3: carácter ilegal ' '
+Linea 7, col 4: carácter ilegal ' '
+Linea 7, col 11: carácter ilegal ' '
+Linea 7, col 13: carácter ilegal '\n'
+Linea 8, col 1: carácter ilegal ' '
+Linea 8, col 2: carácter ilegal ' '
+Linea 8, col 6: carácter ilegal '\n'
+Linea 9, col 1: carácter ilegal ' '
+Linea 9, col 2: carácter ilegal ' '
+Linea 9, col 8: carácter ilegal ' '
+Linea 9, col 18: carácter ilegal ' '
+Linea 9, col 19: carácter ilegal '='
+Linea 9, col 20: carácter ilegal ' '
+Linea 9, col 22: carácter ilegal '\n'
+Linea 10, col 1: carácter ilegal ' '
+Linea 10, col 2: carácter ilegal ' '
+Linea 10, col 6: carácter ilegal ' '
+Linea 10, col 8: carácter ilegal ' '
+Linea 10, col 9: carácter ilegal '='
+Linea 10, col 10: carácter ilegal ' '
+Linea 10, col 12: carácter ilegal ','
+Linea 10, col 13: carácter ilegal ' '
+Linea 10, col 15: carácter ilegal ' '
+Linea 10, col 18: carácter ilegal '\n'
+Linea 11, col 1: carácter ilegal ' '
+Linea 11, col 2: carácter ilegal ' '
+Linea 11, col 3: carácter ilegal ' '
+Linea 11, col 4: carácter ilegal ' '
+Linea 11, col 14: carácter ilegal ' '
+Linea 11, col 15: carácter ilegal '='
+Linea 11, col 16: carácter ilegal ' '
+Linea 11, col 26: carácter ilegal ' '
+Linea 11, col 27: carácter ilegal '*'
+Linea 11, col 28: carácter ilegal ' '
+Linea 11, col 30: carácter ilegal '\n'
+Linea 12, col 1: carácter ilegal ' '
+Linea 12, col 2: carácter ilegal ' '
+Linea 12, col 6: carácter ilegal '\n'
+Linea 13, col 1: carácter ilegal ' '
+Linea 13, col 2: carácter ilegal ' '
+Linea 13, col 9: carácter ilegal ' '
+Linea 13, col 19: carácter ilegal '\n'
+Linea 14, col 4: carácter ilegal '\n'
+Linea 15, col 1: carácter ilegal '\n'
+Linea 16, col 6: carácter ilegal ' '
+Linea 16, col 15: carácter ilegal ' '
+Linea 16, col 25: carácter ilegal '('
+Linea 16, col 27: carácter ilegal ')'
+Linea 16, col 28: carácter ilegal '\n'
+Linea 17, col 1: carácter ilegal ' '
+Linea 17, col 2: carácter ilegal ' '
+Linea 17, col 8: carácter ilegal ' '
+Linea 17, col 10: carácter ilegal ','
+Linea 17, col 11: carácter ilegal ' '
+Linea 17, col 13: carácter ilegal ' '
+Linea 17, col 14: carácter ilegal '='
+Linea 17, col 15: carácter ilegal ' '
+Linea 17, col 17: carácter ilegal ','
+Linea 17, col 18: carácter ilegal ' '
+Linea 17, col 20: carácter ilegal '\n'
+Linea 18, col 1: carácter ilegal ' '
+Linea 18, col 2: carácter ilegal ' '
+Linea 18, col 8: carácter ilegal ' '
+Linea 18, col 10: carácter ilegal ' '
+Linea 18, col 11: carácter ilegal '='
+Linea 18, col 12: carácter ilegal ' '
+Linea 18, col 14: carácter ilegal '\n'
+Linea 19, col 1: carácter ilegal ' '
+Linea 19, col 2: carácter ilegal ' '
+Linea 19, col 8: carácter ilegal ' '
+Linea 19, col 10: carácter ilegal ' '
+Linea 19, col 11: carácter ilegal '<'
+Linea 19, col 12: carácter ilegal ' '
+Linea 19, col 14: carácter ilegal ' '
+Linea 19, col 17: carácter ilegal '\n'
+Linea 20, col 1: carácter ilegal ' '
+Linea 20, col 2: carácter ilegal ' '
+Linea 20, col 3: carácter ilegal ' '
+Linea 20, col 4: carácter ilegal ' '
+Linea 20, col 6: carácter ilegal ','
+Linea 20, col 7: carácter ilegal ' '
+Linea 20, col 9: carácter ilegal ' '
+Linea 20, col 10: carácter ilegal '='
+Linea 20, col 11: carácter ilegal ' '
+Linea 20, col 13: carácter ilegal ','
+Linea 20, col 14: carácter ilegal ' '
+Linea 20, col 16: carácter ilegal ' '
+Linea 20, col 17: carácter ilegal '+'
+Linea 20, col 18: carácter ilegal ' '
+Linea 20, col 20: carácter ilegal '\n'
+Linea 21, col 1: carácter ilegal ' '
+Linea 21, col 2: carácter ilegal ' '
+Linea 21, col 3: carácter ilegal ' '
+Linea 21, col 4: carácter ilegal ' '
+Linea 21, col 6: carácter ilegal ' '
+Linea 21, col 7: carácter ilegal '='
+Linea 21, col 8: carácter ilegal ' '
+Linea 21, col 10: carácter ilegal ' '
+Linea 21, col 11: carácter ilegal '+'
+Linea 21, col 12: carácter ilegal ' '
+Linea 21, col 14: carácter ilegal '\n'
+Linea 22, col 1: carácter ilegal ' '
+Linea 22, col 2: carácter ilegal ' '
+Linea 22, col 6: carácter ilegal '\n'
+Linea 23, col 1: carácter ilegal ' '
+Linea 23, col 2: carácter ilegal ' '
+Linea 23, col 9: carácter ilegal ' '
+Linea 23, col 11: carácter ilegal '\n'
+Linea 24, col 4: carácter ilegal '\n'
+Linea 25, col 1: carácter ilegal '\n'
+Linea 26, col 6: carácter ilegal ' '
+Linea 26, col 15: carácter ilegal ' '
+Linea 26, col 24: carácter ilegal '('
+Linea 26, col 26: carácter ilegal ')'
+Linea 26, col 27: carácter ilegal '\n'
+Linea 27, col 1: carácter ilegal ' '
+Linea 27, col 2: carácter ilegal ' '
+Linea 27, col 5: carácter ilegal ' '
+Linea 27, col 7: carácter ilegal ' '
+Linea 27, col 8: carácter ilegal '<'
+Linea 27, col 9: carácter ilegal ' '
+Linea 27, col 11: carácter ilegal ' '
+Linea 27, col 16: carácter ilegal '\n'
+Linea 28, col 1: carácter ilegal ' '
+Linea 28, col 2: carácter ilegal ' '
+Linea 28, col 3: carácter ilegal ' '
+Linea 28, col 4: carácter ilegal ' '
+Linea 28, col 11: carácter ilegal ' '
+Linea 28, col 17: carácter ilegal '\n'
+Linea 29, col 1: carácter ilegal ' '
+Linea 29, col 2: carácter ilegal ' '
+Linea 29, col 6: carácter ilegal '\n'
+Linea 30, col 1: carácter ilegal ' '
+Linea 30, col 2: carácter ilegal ' '
+Linea 30, col 8: carácter ilegal ' '
+Linea 30, col 10: carácter ilegal ' '
+Linea 30, col 11: carácter ilegal '='
+Linea 30, col 12: carácter ilegal ' '
+Linea 30, col 14: carácter ilegal '\n'
+Linea 31, col 1: carácter ilegal ' '
+Linea 31, col 2: carácter ilegal ' '
+Linea 31, col 8: carácter ilegal ' '
+Linea 31, col 10: carácter ilegal ' '
+Linea 31, col 11: carácter ilegal '*'
+Linea 31, col 12: carácter ilegal ' '
+Linea 31, col 14: carácter ilegal ' '
+Linea 31, col 15: carácter ilegal '<'
+Linea 31, col 16: carácter ilegal '='
+Linea 31, col 17: carácter ilegal ' '
+Linea 31, col 19: carácter ilegal ' '
+Linea 31, col 22: carácter ilegal '\n'
+Linea 32, col 1: carácter ilegal ' '
+Linea 32, col 2: carácter ilegal ' '
+Linea 32, col 3: carácter ilegal ' '
+Linea 32, col 4: carácter ilegal ' '
+Linea 32, col 7: carácter ilegal ' '
+Linea 32, col 9: carácter ilegal ' '
+Linea 32, col 10: carácter ilegal '%'
+Linea 32, col 11: carácter ilegal ' '
+Linea 32, col 13: carácter ilegal ' '
+Linea 32, col 14: carácter ilegal '='
+Linea 32, col 15: carácter ilegal '='
+Linea 32, col 16: carácter ilegal ' '
+Linea 32, col 18: carácter ilegal ' '
+Linea 32, col 23: carácter ilegal '\n'
+Linea 33, col 1: carácter ilegal ' '
+Linea 33, col 2: carácter ilegal ' '
+Linea 33, col 3: carácter ilegal ' '
+Linea 33, col 4: carácter ilegal ' '
+Linea 33, col 5: carácter ilegal ' '
+Linea 33, col 6: carácter ilegal ' '
+Linea 33, col 13: carácter ilegal ' '
+Linea 33, col 19: carácter ilegal '\n'
+Linea 34, col 1: carácter ilegal ' '
+Linea 34, col 2: carácter ilegal ' '
+Linea 34, col 3: carácter ilegal ' '
+Linea 34, col 4: carácter ilegal ' '
+Linea 34, col 8: carácter ilegal '\n'
+Linea 35, col 1: carácter ilegal ' '
+Linea 35, col 2: carácter ilegal ' '
+Linea 35, col 3: carácter ilegal ' '
+Linea 35, col 4: carácter ilegal ' '
+Linea 35, col 6: carácter ilegal ' '
+Linea 35, col 7: carácter ilegal '='
+Linea 35, col 8: carácter ilegal ' '
+Linea 35, col 10: carácter ilegal ' '
+Linea 35, col 11: carácter ilegal '+'
+Linea 35, col 12: carácter ilegal ' '
+Linea 35, col 14: carácter ilegal '\n'
+Linea 36, col 1: carácter ilegal ' '
+Linea 36, col 2: carácter ilegal ' '
+Linea 36, col 6: carácter ilegal '\n'
+Linea 37, col 1: carácter ilegal ' '
+Linea 37, col 2: carácter ilegal ' '
+Linea 37, col 9: carácter ilegal ' '
+Linea 37, col 14: carácter ilegal '\n'
+Linea 38, col 4: carácter ilegal '\n'
+Linea 39, col 1: carácter ilegal '\n'
+Linea 40, col 4: carácter ilegal ' '
+Linea 40, col 6: carácter ilegal ' '
+Linea 40, col 7: carácter ilegal '='
+Linea 40, col 8: carácter ilegal ' '
+Linea 40, col 10: carácter ilegal ','
+Linea 40, col 11: carácter ilegal ' '
+Linea 40, col 14: carácter ilegal ' '
+Linea 40, col 17: carácter ilegal '\n'
+Linea 41, col 1: carácter ilegal ' '
+Linea 41, col 2: carácter ilegal ' '
+Linea 41, col 8: carácter ilegal '('
+Linea 41, col 15: carácter ilegal ' '
+Linea 41, col 16: carácter ilegal '.'
+Linea 41, col 17: carácter ilegal '.'
+Linea 41, col 18: carácter ilegal ' '
+Linea 41, col 20: carácter ilegal ' '
+Linea 41, col 21: carácter ilegal '.'
+Linea 41, col 22: carácter ilegal '.'
+Linea 41, col 23: carácter ilegal ' '
+Linea 41, col 30: carácter ilegal ' '
+Linea 41, col 31: carácter ilegal '.'
+Linea 41, col 32: carácter ilegal '.'
+Linea 41, col 33: carácter ilegal ' '
+Linea 41, col 43: carácter ilegal '('
+Linea 41, col 45: carácter ilegal ')'
+Linea 41, col 46: carácter ilegal ')'
+Linea 41, col 47: carácter ilegal '\n'
+Linea 42, col 4: carácter ilegal '\n'
+Linea 43, col 6: carácter ilegal '('
+Linea 43, col 15: carácter ilegal ' '
+Linea 43, col 16: carácter ilegal '.'
+Linea 43, col 17: carácter ilegal '.'
+Linea 43, col 18: carácter ilegal ' '
+Linea 43, col 28: carácter ilegal '('
+Linea 43, col 31: carácter ilegal ')'
+Linea 43, col 32: carácter ilegal ')'
+Linea 43, col 33: carácter ilegal '\n'
+Linea 44, col 1: carácter ilegal '\n'
+Linea 45, col 6: carácter ilegal ' '
+Linea 45, col 13: carácter ilegal ' '
+Linea 45, col 14: carácter ilegal '='
+Linea 45, col 15: carácter ilegal ' '
+Linea 45, col 16: carácter ilegal '{'
+Linea 45, col 17: carácter ilegal '}'
+Linea 45, col 18: carácter ilegal '\n'
+Linea 46, col 6: carácter ilegal ' '
+Linea 46, col 17: carácter ilegal ' '
+Linea 46, col 18: carácter ilegal '='
+Linea 46, col 19: carácter ilegal ' '
+Linea 46, col 21: carácter ilegal '\n'
+Linea 47, col 4: carácter ilegal ' '
+Linea 47, col 6: carácter ilegal ' '
+Linea 47, col 7: carácter ilegal '='
+Linea 47, col 8: carácter ilegal ' '
+Linea 47, col 10: carácter ilegal ','
+Linea 47, col 11: carácter ilegal ' '
+Linea 47, col 14: carácter ilegal ' '
+Linea 47, col 17: carácter ilegal '\n'
+Linea 48, col 1: carácter ilegal ' '
+Linea 48, col 2: carácter ilegal ' '
+Linea 48, col 5: carácter ilegal ' '
+Linea 48, col 14: carácter ilegal '('
+Linea 48, col 16: carácter ilegal ')'
+Linea 48, col 17: carácter ilegal ' '
+Linea 48, col 21: carácter ilegal ' '
+Linea 48, col 25: carácter ilegal ' '
+Linea 48, col 26: carácter ilegal '('
+Linea 48, col 28: carácter ilegal ' '
+Linea 48, col 29: carácter ilegal '='
+Linea 48, col 30: carácter ilegal '='
+Linea 48, col 31: carácter ilegal ' '
+Linea 48, col 33: carácter ilegal ')'
+Linea 48, col 34: carácter ilegal ' '
+Linea 48, col 39: carácter ilegal '\n'
+Linea 49, col 1: carácter ilegal ' '
+Linea 49, col 2: carácter ilegal ' '
+Linea 49, col 3: carácter ilegal ' '
+Linea 49, col 4: carácter ilegal ' '
+Linea 49, col 11: carácter ilegal '['
+Linea 49, col 12: carácter ilegal '#'
+Linea 49, col 19: carácter ilegal ' '
+Linea 49, col 20: carácter ilegal '+'
+Linea 49, col 21: carácter ilegal ' '
+Linea 49, col 23: carácter ilegal ']'
+Linea 49, col 24: carácter ilegal ' '
+Linea 49, col 25: carácter ilegal '='
+Linea 49, col 26: carácter ilegal ' '
+Linea 49, col 28: carácter ilegal '\n'
+Linea 50, col 1: carácter ilegal ' '
+Linea 50, col 2: carácter ilegal ' '
+Linea 50, col 7: carácter ilegal '\n'
+Linea 51, col 1: carácter ilegal ' '
+Linea 51, col 2: carácter ilegal ' '
+Linea 51, col 3: carácter ilegal ' '
+Linea 51, col 4: carácter ilegal ' '
+Linea 51, col 15: carácter ilegal ' '
+Linea 51, col 16: carácter ilegal '='
+Linea 51, col 17: carácter ilegal ' '
+Linea 51, col 28: carácter ilegal ' '
+Linea 51, col 29: carácter ilegal '+'
+Linea 51, col 30: carácter ilegal ' '
+Linea 51, col 32: carácter ilegal '\n'
+Linea 52, col 1: carácter ilegal ' '
+Linea 52, col 2: carácter ilegal ' '
+Linea 52, col 6: carácter ilegal '\n'
+Linea 53, col 4: carácter ilegal '\n'
+Linea 54, col 6: carácter ilegal '('
+Linea 54, col 17: carácter ilegal ' '
+Linea 54, col 18: carácter ilegal '.'
+Linea 54, col 19: carácter ilegal '.'
+Linea 54, col 20: carácter ilegal ' '
+Linea 54, col 26: carácter ilegal '.'
+Linea 54, col 33: carácter ilegal '('
+Linea 54, col 40: carácter ilegal ','
+Linea 54, col 41: carácter ilegal ' '
+Linea 54, col 46: carácter ilegal ')'
+Linea 54, col 47: carácter ilegal ')'
+Linea 54, col 48: carácter ilegal '\n'
+Linea 55, col 6: carácter ilegal '('
+Linea 55, col 20: carácter ilegal ' '
+Linea 55, col 21: carácter ilegal '.'
+Linea 55, col 22: carácter ilegal '.'
+Linea 55, col 23: carácter ilegal ' '
+Linea 55, col 34: carácter ilegal ')'
+Linea 55, col 35: carácter ilegal '\n'
+Linea 56, col 1: carácter ilegal '\n'
+Linea 57, col 30: carácter ilegal '\n'
+Linea 58, col 6: carácter ilegal ' '
+Linea 58, col 16: carácter ilegal ' '
+Linea 58, col 17: carácter ilegal '='
+Linea 58, col 18: carácter ilegal ' '
+Linea 58, col 22: carácter ilegal '\n'
+Linea 59, col 6: carácter ilegal ' '
+Linea 59, col 11: carácter ilegal ' '
+Linea 59, col 14: carácter ilegal '\n'
+Linea 60, col 1: carácter ilegal ' '
+Linea 60, col 2: carácter ilegal ' '
+Linea 60, col 12: carácter ilegal ' '
+Linea 60, col 13: carácter ilegal '='
+Linea 60, col 14: carácter ilegal ' '
+Linea 60, col 24: carácter ilegal ' '
+Linea 60, col 25: carácter ilegal '+'
+Linea 60, col 26: carácter ilegal ' '
+Linea 60, col 28: carácter ilegal '\n'
+Linea 61, col 1: carácter ilegal ' '
+Linea 61, col 2: carácter ilegal ' '
+Linea 61, col 5: carácter ilegal ' '
+Linea 61, col 14: carácter ilegal '('
+Linea 61, col 24: carácter ilegal ')'
+Linea 61, col 25: carácter ilegal ' '
+Linea 61, col 30: carácter ilegal '\n'
+Linea 62, col 1: carácter ilegal ' '
+Linea 62, col 2: carácter ilegal ' '
+Linea 62, col 3: carácter ilegal ' '
+Linea 62, col 4: carácter ilegal ' '
+Linea 62, col 10: carácter ilegal '\n'
+Linea 63, col 1: carácter ilegal ' '
+Linea 63, col 2: carácter ilegal ' '
+Linea 63, col 6: carácter ilegal '\n'
+Linea 64, col 4: carácter ilegal '\n'
+Linea 65, col 6: carácter ilegal '('
+Linea 65, col 29: carácter ilegal ' '
+Linea 65, col 30: carácter ilegal '.'
+Linea 65, col 31: carácter ilegal '.'
+Linea 65, col 32: carácter ilegal ' '
+Linea 65, col 42: carácter ilegal ')'

@@ -2,7 +2,7 @@ import os
 import sys
 from datetime import datetime
  
-import lexico
+import lexer 
  
 CARPETA_LOGS = 'logs'
  
@@ -21,7 +21,7 @@ f = open(archivo, encoding='utf-8')
 codigo = f.read()
 f.close()
  
-tokens, errores = lexico.analizar(codigo)
+tokens, errores = lexer.analizar(codigo)
  
 ahora = datetime.now()
 nombre = 'lexico-' + usuario + '-' + ahora.strftime('%d-%m-%Y-%Hh%M') + '.txt'
