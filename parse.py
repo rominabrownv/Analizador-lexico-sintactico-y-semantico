@@ -13,9 +13,11 @@ precedence = (
     ('left', 'OR'),
     ('left', 'AND'),
     ('left', 'EQ', 'NE', 'LT', 'GT', 'LE', 'GE'),
+    ('right', 'CONCAT'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE', 'FLOORDIV', 'MOD'),
     ('right', 'NOT', 'LEN'),
+    ('right', 'POW'),
 )
 
 
@@ -290,3 +292,120 @@ def p_sentencia_goto(p):
 def p_sentencia_etiqueta(p):
     'sentencia : DBLCOLON ID DBLCOLON'
     p[0] = ('declarar_etiqueta', p[2])
+
+
+#EXPRESIONES BASICAS 
+
+def p_expresion_basica(p):
+    '''expresion : NIL
+                 | TRUE
+                 | FALSE
+                 | INTEGER
+                 | FLOAT
+                 | STRING
+                 | acceso'''
+    p[0] = p[1]
+
+
+def p_expresion_binaria(p):
+    '''expresion : expresion PLUS expresion
+                 | expresion MINUS expresion
+                 | expresion TIMES expresion
+                 | expresion DIVIDE expresion
+                 | expresion FLOORDIV expresion
+                 | expresion MOD expresion
+                 | expresion POW expresion
+                 | expresion CONCAT expresion
+                 | expresion EQ expresion
+                 | expresion NE expresion
+                 | expresion LT expresion
+                 | expresion GT expresion
+                 | expresion LE expresion
+                 | expresion GE expresion
+                 | expresion AND expresion
+                 | expresion OR expresion'''
+    p[0] = (p[2], p[1], p[3])
+
+
+def p_expresion_unaria(p):
+    '''expresion : NOT expresion
+                 | LEN expresion
+                 | MINUS expresion %prec NOT'''
+    p[0] = (p[1], p[2])
+
+
+def p_expresion_parentesis(p):
+    'expresion : LPAREN expresion RPAREN'
+    p[0] = p[2]
+
+
+
+# --- Condicional if / elseif / else ---
+def p_sentencia_if(p):
+    '''sentencia : IF expresion THEN bloque END
+                 | IF expresion THEN bloque ELSE bloque END
+                 | IF expresion THEN bloque lista_elseif END
+                 | IF expresion THEN bloque lista_elseif ELSE bloque END'''
+    p[0] = ('condicional_if', p[2], p[4])
+
+
+def p_lista_elseif_multiple(p):
+    'lista_elseif : lista_elseif ELSEIF expresion THEN bloque'
+    p[0] = p[1] + [(p[3], p[5])]
+
+
+def p_lista_elseif_uno(p):
+    'lista_elseif : ELSEIF expresion THEN bloque'
+    p[0] = [(p[2], p[4])]
+
+
+# --- Arreglo y matriz: { e1, e2, ... } ---
+# La matriz sale sola: un arreglo puede contener otros arreglos
+def p_expresion_arreglo(p):
+    '''expresion : LBRACE RBRACE
+                 | LBRACE lista_expresiones RBRACE
+                 | LBRACE lista_expresiones COMMA RBRACE'''
+    p[0] = ('arreglo', [] if len(p) == 3 else p[2])
+
+
+# --- Función con parámetros y retorno ---
+def p_sentencia_funcion(p):
+    '''sentencia : FUNCTION ID LPAREN RPAREN bloque END
+                 | FUNCTION ID LPAREN lista_parametros RPAREN bloque END'''
+    if len(p) == 7:
+        p[0] = ('funcion', p[2], [], p[5])
+    else:
+        p[0] = ('funcion', p[2], p[4], p[6])
+
+
+def p_sentencia_retorno(p):
+    '''sentencia : RETURN
+                 | RETURN lista_expresiones'''
+    p[0] = ('retorno', p[2] if len(p) == 3 else None)
+
+
+# --- Llamada a función como sentencia, incluye print(...) ---
+def p_sentencia_llamada(p):
+    '''sentencia : ID LPAREN RPAREN
+                 | ID LPAREN lista_expresiones RPAREN'''
+    p[0] = ('llamada', p[1])
+
+
+
+#ERRORES Y EJECUCION
+
+def p_error(p):
+    if p is None:
+        errores_sintacticos.append("Error sintáctico: fin de archivo inesperado.")
+    else:
+        errores_sintacticos.append(
+            f"Error sintáctico en la línea {p.lineno}: token inesperado '{p.value}'."
+        )
+
+parser = yacc.yacc()
+
+def analizar_sintaxis(codigo):
+    del errores_sintacticos[:]
+    analizador_lexico.lexer.lineno = 1
+    parser.parse(codigo, lexer=analizador_lexico.lexer)
+    return list(errores_sintacticos)
