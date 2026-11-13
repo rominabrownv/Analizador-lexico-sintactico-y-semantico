@@ -162,15 +162,16 @@ def p_bloque_uno(p):
 # ESTRUCTURA DE DATOS: 
 #PILA
 
+# Crear una pila vacía
 def p_sentencia_crear_pila(p):
     'sentencia : ID ASSIGN LBRACE RBRACE'
     p[0] = ('crear_pila', p[1])
 
 
+# Insertar un elemento en la pila
 def p_sentencia_insertar_pila(p):
     'sentencia : ID LBRACKET LEN ID RBRACKET ASSIGN expresion'
     p[0] = ('insertar_en_pila', p[1], p[7])
-
 
 # LISTA ENLAZADA
 
