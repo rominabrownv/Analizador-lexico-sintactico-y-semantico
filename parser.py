@@ -403,7 +403,7 @@ def p_error(p):
             f"Error sintáctico en la línea {p.lineno}: token inesperado '{p.value}'."
         )
 
-parser = yacc.yacc()
+parser = yacc.yacc(write_tables=False, debug=False)
 
 def analizar_sintaxis(codigo):
     del errores_sintacticos[:]

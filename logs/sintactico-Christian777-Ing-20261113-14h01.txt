@@ -1,0 +1,34 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: Christian777-Ing
+Fecha: 20261113-14h01
+Archivo analizado: test/algoritmoDePrueba1.lua
+
+========== ERRORES SINTACTICOS ==========
+Error sintáctico en la línea 3: token inesperado 'function'.
+Error sintáctico en la línea 11: token inesperado 'resultado'.
+Error sintáctico en la línea 19: token inesperado 'while'.
+Error sintáctico en la línea 31: token inesperado 'while'.
+Error sintáctico en la línea 35: token inesperado 'd'.
+Error sintáctico en la línea 49: token inesperado '+'.
+Error sintáctico en la línea 54: token inesperado '('.
+Error sintáctico en la línea 59: token inesperado 'while'.
+Error sintáctico en la línea 64: token inesperado 'end'.
+Error sintáctico en la línea 72: token inesperado 'function'.
+Error sintáctico en la línea 74: token inesperado '...'.
+Error sintáctico en la línea 84: token inesperado '0'.
+Error sintáctico en la línea 90: token inesperado 'end'.
+Error sintáctico en la línea 104: token inesperado 'repeat'.
+Error sintáctico en la línea 111: token inesperado 'until'.
+Error sintáctico en la línea 114: token inesperado '('.
+Error sintáctico en la línea 115: token inesperado '('.
+Error sintáctico en la línea 124: token inesperado '('.
+Error sintáctico en la línea 125: token inesperado '('.
+Error sintáctico en la línea 127: token inesperado '&'.
+Error sintáctico en la línea 128: token inesperado '('.
+Error sintáctico en la línea 128: token inesperado '('.
+Error sintáctico en la línea 128: token inesperado '('.
+Error sintáctico en la línea 134: token inesperado 'valor'.
+Error sintáctico en la línea 141: token inesperado '#'.
+Error sintáctico en la línea 149: token inesperado 'local'.
+Error sintáctico en la línea 156: token inesperado '2'.
+Error sintáctico en la línea 163: token inesperado 'local'.
