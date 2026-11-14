@@ -1,0 +1,11 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: rominabrownv
+Fecha: 2026-11-14-15h-55
+Archivo analizado: test/AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SINTACTICOS ==========
+Error sintáctico en la línea 52: token inesperado 'while'.
+Error sintáctico en la línea 55: token inesperado 'end'.
+Error sintáctico en la línea 59: token inesperado 'repeat'.
+Error sintáctico en la línea 61: token inesperado 'until'.
+Error sintáctico en la línea 81: token inesperado 'print'.

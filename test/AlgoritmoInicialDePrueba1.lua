@@ -76,3 +76,7 @@ end
 local numero_combinado = 12abc
 
 print(nombre, apellido, estado(promedio), total, intentos, hexa, grande, materias, persona.nombre)
+
+if edad > 18
+    print("Mayor")
+end

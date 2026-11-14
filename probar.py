@@ -28,7 +28,7 @@ usuario = sys.argv[2] if len(sys.argv) > 2 else input("Ingrese su usuario de Git
 
 # Fecha y hora UTC-5
 zona_horaria = timezone(timedelta(hours=-5))
-fecha_hora = datetime.now(zona_horaria).strftime("%Y%m%d-%Hh%M")
+fecha_hora = datetime.now(zona_horaria).strftime("%Y-%m-%d-%Hh-%M")
 
 # Ejecutar análisis léxico
 tokens, errores_lexicos = lexer.analizar(codigo)
