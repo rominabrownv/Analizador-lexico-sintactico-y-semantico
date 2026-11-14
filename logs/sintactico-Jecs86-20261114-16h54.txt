@@ -1,0 +1,12 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: Jecs86
+Fecha: 20261114-16h54
+Archivo analizado: test\pruebas-joseph.lua
+
+========== ERRORES SINTACTICOS ==========
+Error sintáctico en la línea 44: token inesperado 'do'.
+Error sintáctico en la línea 47: token inesperado 'end'.
+Error sintáctico en la línea 59: token inesperado 'do'.
+Error sintáctico en la línea 64: token inesperado 'end'.
+Error sintáctico en la línea 122: token inesperado 'if'.
+Error sintáctico en la línea 125: token inesperado ','.

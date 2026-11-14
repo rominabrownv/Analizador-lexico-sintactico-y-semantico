@@ -1,0 +1,48 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: Jecs86
+Fecha: 20261113-21h59
+Archivo analizado: test\pruebas-joseph.lua
+
+========== ERRORES SINTACTICOS ==========
+Error sintáctico en la línea 6: token inesperado '10'.
+Error sintáctico en la línea 7: token inesperado '3'.
+Error sintáctico en la línea 8: token inesperado '+'.
+Error sintáctico en la línea 9: token inesperado '-'.
+Error sintáctico en la línea 10: token inesperado '*'.
+Error sintáctico en la línea 11: token inesperado '/'.
+Error sintáctico en la línea 12: token inesperado '//'.
+Error sintáctico en la línea 13: token inesperado '%'.
+Error sintáctico en la línea 14: token inesperado '^'.
+Error sintáctico en la línea 16: token inesperado '('.
+Error sintáctico en la línea 17: token inesperado '('.
+Error sintáctico en la línea 18: token inesperado '('.
+Error sintáctico en la línea 19: token inesperado '('.
+Error sintáctico en la línea 20: token inesperado '('.
+Error sintáctico en la línea 21: token inesperado '('.
+Error sintáctico en la línea 23: token inesperado '('.
+Error sintáctico en la línea 24: token inesperado '('.
+Error sintáctico en la línea 25: token inesperado 'not'.
+Error sintáctico en la línea 30: token inesperado '5'.
+Error sintáctico en la línea 31: token inesperado '5'.
+Error sintáctico en la línea 32: token inesperado '5'.
+Error sintáctico en la línea 33: token inesperado '2'.
+Error sintáctico en la línea 34: token inesperado '4'.
+Error sintáctico en la línea 36: token inesperado '"Hola "'.
+Error sintáctico en la línea 37: token inesperado '#'.
+Error sintáctico en la línea 39: token inesperado '{'.
+Error sintáctico en la línea 40: token inesperado '['.
+Error sintáctico en la línea 43: token inesperado '::'.
+Error sintáctico en la línea 47: token inesperado 'end'.
+Error sintáctico en la línea 50: token inesperado '99'.
+Error sintáctico en la línea 57: token inesperado 'local'.
+Error sintáctico en la línea 62: token inesperado '-'.
+Error sintáctico en la línea 64: token inesperado '5'.
+Error sintáctico en la línea 68: token inesperado 'end'.
+Error sintáctico en la línea 73: token inesperado '+'.
+Error sintáctico en la línea 76: token inesperado 'until'.
+Error sintáctico en la línea 85: token inesperado 'function'.
+Error sintáctico en la línea 87: token inesperado 'end'.
+Error sintáctico en la línea 89: token inesperado '('.
+Error sintáctico en la línea 91: token inesperado '"Lua 5.5"'.
+Error sintáctico en la línea 95: token inesperado '{'.
+Error sintáctico en la línea 102: token inesperado '{'.
