@@ -1,0 +1,16 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: Christian777-Ing
+Fecha: 2026-11-14-20h-07
+Archivo analizado: test/algoritmoDePrueba1.lua
+
+========== ERRORES SINTACTICOS ==========
+Error sintáctico en la línea 72: token inesperado '...'.
+Error sintáctico en la línea 74: token inesperado '...'.
+Error sintáctico en la línea 76: token inesperado 'end'.
+Error sintáctico en la línea 86: token inesperado 'end'.
+Error sintáctico en la línea 127: token inesperado '~'.
+Error sintáctico en la línea 141: token inesperado '#'.
+Error sintáctico en la línea 149: token inesperado 'local'.
+Error sintáctico en la línea 154: token inesperado '5'.
+Error sintáctico en la línea 156: token inesperado '2'.
+Error sintáctico en la línea 163: token inesperado 'local'.

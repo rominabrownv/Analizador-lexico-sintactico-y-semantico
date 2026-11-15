@@ -1,0 +1,8 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: Christian777-Ing
+Fecha: 2026-11-14-20h-08
+Archivo analizado: test/AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SINTACTICOS ==========
+Error sintáctico en la línea 81: token inesperado 'print'.
+Error sintáctico en la línea 82: token inesperado 'end'.

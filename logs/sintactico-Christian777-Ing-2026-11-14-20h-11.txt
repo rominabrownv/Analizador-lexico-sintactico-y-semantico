@@ -1,0 +1,7 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: Christian777-Ing
+Fecha: 2026-11-14-20h-11
+Archivo analizado: test/AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SINTACTICOS ==========
+No se encontraron errores sintacticos.
