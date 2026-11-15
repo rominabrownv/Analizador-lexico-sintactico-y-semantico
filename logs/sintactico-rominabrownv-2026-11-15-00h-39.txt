@@ -1,0 +1,7 @@
+========== ANALISIS SINTACTICO ==========
+Usuario: rominabrownv
+Fecha: 2026-11-15-00h-39
+Archivo analizado: test/AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SINTACTICOS ==========
+No se encontraron errores sintacticos.

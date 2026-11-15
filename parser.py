@@ -142,7 +142,7 @@ def p_expresion_prefijo(p):
 
 def p_variable_id(p):
     'variable : ID'
-    p[0] = ('identificador', p[1])
+    p[0] = ('identificador', p[1], p.lineno(1))
 
 def p_variable_atributo(p):
     'variable : expresion_prefijo DOT ID'
@@ -160,13 +160,15 @@ def p_llamada_funcion(p):
     args = p[3] if len(p) == 5 else []
     callee = p[1]
 
-    if callee == ('identificador', 'tonumber') and len(args) == 1:
+    if callee[0] == 'identificador' and callee[1] == 'tonumber' and len(args) == 1:
         p[0] = ('convertir_a_numero', args[0])
-    elif callee == ('identificador', 'tostring') and len(args) == 1:
+    elif callee[0] == 'identificador' and callee[1] == 'tostring' and len(args) == 1:
         p[0] = ('convertir_a_cadena', args[0])
-    elif callee == ('acceso_atributo', ('identificador', 'io'), 'write'):
+    elif (callee[0] == 'acceso_atributo' and callee[1][0] == 'identificador'
+          and callee[1][1] == 'io' and callee[2] == 'write'):
         p[0] = ('io_write', args)
-    elif callee == ('acceso_atributo', ('identificador', 'io'), 'read'):
+    elif (callee[0] == 'acceso_atributo' and callee[1][0] == 'identificador'
+          and callee[1][1] == 'io' and callee[2] == 'read'):
         p[0] = ('io_read', args)
     else:
         p[0] = ('llamada_funcion', callee, args)
@@ -190,25 +192,27 @@ def p_sentencia_asignacion(p):
         destino = p[1][0]
         valor = p[3][0]
 
-        # (Christian) CREAR pila:  pila = {}   (por convención de nombre)
+        # (Christian) CREAR pila:  pila = {}
         if (destino[0] == 'identificador'
                 and es_nombre_pila(destino[1])
                 and valor == ('arreglo', [])):
-            p[0] = ('crear_pila', destino[1])
-    
+            p[0] = ('crear_pila', destino[1], False, destino[2])
+
         # (Christian) INSERTAR en pila:  pila[#pila + 1] = v
         elif (destino[0] == 'acceso_indice'
-                and destino[1][0] == 'identificador'
+                and isinstance(destino[1], tuple) and destino[1][0] == 'identificador'
                 and isinstance(destino[2], tuple) and destino[2][0] == '+'
                 and isinstance(destino[2][1], tuple) and destino[2][1][0] == '#'
-                and destino[2][1][1] == destino[1]):
-            p[0] = ('insertar_en_pila', destino[1][1], valor)
-    
+                and isinstance(destino[2][1][1], tuple)
+                and destino[2][1][1][0] == 'identificador'
+                and destino[2][1][1][1] == destino[1][1]):
+            p[0] = ('insertar_en_pila', destino[1][1], valor, destino[1][2])
+
         # (Christian) LISTA ENLAZADA:  nodo = { valor = 5, siguiente = nil }
         elif (destino[0] == 'identificador'
                 and isinstance(valor, tuple) and valor[0] == 'tabla'
                 and {'valor', 'siguiente'} <= {c[1] for c in valor[1] if c[0] == 'campo'}):
-            p[0] = ('crear_lista_enlazada', destino[1], valor)
+            p[0] = ('crear_lista_enlazada', destino[1], valor, destino[2])
 
         else:
             p[0] = ('asignacion_simple', destino, valor)
