@@ -1,0 +1,13 @@
+========== ANALISIS SEMÁNTICO ==========
+Usuario: Jecs86
+Fecha: 2026-11-16-20h-51
+Archivo analizado: test\AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SEMÁNTICOS ==========
+Error semántico (identificadores) en la línea 92: no se puede modificar la constante 'PI'.
+Error semántico (identificadores) en la línea 93: no se puede modificar la constante 'PI'.
+Error semántico (identificadores) en la línea 94: la variable 'puntaje' no ha sido declarada.
+Error semántico (identificadores) en la línea 95: la variable 'r' no ha sido declarada.
+Error semántico (identificadores) en la línea 96: la variable 'pila' no ha sido declarada.
+Error semántico (identificadores) en la línea 99: la variable 'nodo' no ha sido declarada.
+Error semántico (identificadores) en la línea 100: la función 'noexiste' no ha sido declarada.

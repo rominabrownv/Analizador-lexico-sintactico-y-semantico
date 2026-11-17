@@ -355,7 +355,6 @@ def error_operacion(linea, mensaje):
     errores_operaciones.append((linea, mensaje))
 
 def es_cadena_numerica(valor_str):
-    # En Lua, las cadenas literales vienen con comillas ("70", '3.14', [[10]])
     texto = valor_str.strip()
     if (texto.startswith('"') and texto.endswith('"')) or (
             texto.startswith("'") and texto.endswith("'")):
@@ -480,6 +479,12 @@ def validar_expresion_ops(nodo, tabla_tipos):
         return
 
     op = nodo[0]
+
+    # Si el primer elemento no es un string (ej. es una sub-tupla o lista), recorrer sus elementos
+    if not isinstance(op, str):
+        for parte in nodo:
+            validar_expresion_ops(parte, tabla_tipos)
+        return
 
     # Caso especial: menos unario ('-', operando) o ('-', operando, linea)
     if op == '-' and (len(nodo) == 2 or (len(nodo) == 3 and isinstance(nodo[2], int))):
@@ -646,7 +651,7 @@ def revisar_sentencia_ops(s, tabla_tipos):
         revisar_bloque_ops(s[-1], ambito_fn)
 
     else:
-        validar_expresion_ops(s[1:], tabla_tipos)
+        validar_expresion_ops(list(s[1:]), tabla_tipos)
 
 
 def verificar_operaciones(programa):
