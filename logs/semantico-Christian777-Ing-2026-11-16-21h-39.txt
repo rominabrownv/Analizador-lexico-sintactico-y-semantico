@@ -1,0 +1,8 @@
+========== ANALISIS SEMÁNTICO ==========
+Usuario: Christian777-Ing
+Fecha: 2026-11-16-21h-39
+Archivo analizado: test/algoritmoDePrueba1.lua
+
+========== ERRORES SEMÁNTICOS ==========
+Error semántico (identificadores) en la línea 84: la variable 'contador' no ha sido declarada.
+Error semántico (identificadores) en la línea 85: la variable 'mensaje' no ha sido declarada.

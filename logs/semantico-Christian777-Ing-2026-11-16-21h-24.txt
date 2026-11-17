@@ -1,0 +1,11 @@
+========== ANALISIS SEMÁNTICO ==========
+Usuario: Christian777-Ing
+Fecha: 2026-11-16-21h-24
+Archivo analizado: test/algoritmoDePrueba1.lua
+
+========== ERRORES SEMÁNTICOS ==========
+Error semántico (identificadores) en la línea 128: la variable 'grande' no ha sido declarada.
+Error semántico (identificadores) en la línea 128: la variable 'grande' no ha sido declarada.
+Error semántico (identificadores) en la línea 131: la variable 'enteros' no ha sido declarada.
+Error semántico (identificadores) en la línea 131: la variable 'flotantes' no ha sido declarada.
+Error semántico (identificadores) en la línea 131: la variable 'hexa' no ha sido declarada.

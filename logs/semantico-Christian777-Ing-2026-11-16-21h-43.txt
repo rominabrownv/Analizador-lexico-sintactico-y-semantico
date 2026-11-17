@@ -1,0 +1,7 @@
+========== ANALISIS SEMÁNTICO ==========
+Usuario: Christian777-Ing
+Fecha: 2026-11-16-21h-43
+Archivo analizado: test/AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SEMÁNTICOS ==========
+No se encontraron errores semánticos.

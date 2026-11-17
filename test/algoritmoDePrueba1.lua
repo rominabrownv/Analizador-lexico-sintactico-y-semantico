@@ -136,33 +136,3 @@ for _, lista in ipairs({ enteros, hexa, flotantes }) do
   end
 end
 print("mayor:", mayor)
-
-pint({Hola})
-local numeroX = 3#x
-
--- Algoritmo con errores lexicos (para probar que el analizador los detecta)
- 
-local total = 0
- 
--- ERROR: numeros mal formados
-local a = 3x
-local b = 0xG
-local c = 1e
-local d = 12abc
- 
--- ERROR: caracteres que Lua no reconoce
-local e = 10 @ 5
-local f = $precio
-local g = 8 ? 2
-local h = !valor
- 
--- ERROR: cadena sin cerrar
-local mensaje = "hola mundo
- 
-
-local ok = 0xFF + 1e-9 + 42
-print("termino", ok)
- 
--- ERROR: comentario largo sin cerrar (debe ir al final, se come el resto)
---[[ este comentario nunca se cierra
-local z = 1

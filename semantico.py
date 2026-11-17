@@ -315,7 +315,8 @@ def revisar_sentencia_ident(s, amb):
 
     elif tipo in ('romper_ciclo', 'saltar_a_etiqueta', 'declarar_etiqueta'):
         pass
-
+    elif tipo == 'bloque_do':                     # (tipo, cuerpo)
+        revisar_bloque_ident(s[1], Ambito(amb))
     else:                                         # retorno, etc.
         revisar_expr(list(s[1:]), amb)
 

@@ -259,6 +259,10 @@ def p_sentencia_repeat(p):
     'sentencia : REPEAT bloque UNTIL expresion'
     p[0] = ('bucle_repeat', p[2], p[4])
 
+def p_sentencia_bloque_do(p):
+    'sentencia : DO bloque END'
+    p[0] = ('bloque_do', p[2])
+
 # Condicionales (Romina)
 def p_sentencia_if(p):
     'sentencia : IF expresion THEN bloque lista_elseif parte_else END'
@@ -331,6 +335,14 @@ def p_sentencia_local_function_con_parametros(p):
     'sentencia : LOCAL FUNCTION ID LPAREN lista_parametros RPAREN bloque END'
     p[0] = ('funcion_local', p[3], p[5], p[7])
 
+def p_sentencia_local_function_variadica(p):
+    '''sentencia : LOCAL FUNCTION ID LPAREN VARARG RPAREN bloque END
+                 | LOCAL FUNCTION ID LPAREN lista_parametros COMMA VARARG RPAREN bloque END'''
+    if len(p) == 9:
+        p[0] = ('funcion_local', p[3], [], p[7])
+    else:
+        p[0] = ('funcion_local', p[3], p[5], p[9])
+
 # --- parametros
 def p_lista_parametros_multiple(p):
     'lista_parametros : lista_parametros COMMA ID'
@@ -359,6 +371,7 @@ def p_expresion_basica(p):
                  | INTEGER
                  | FLOAT
                  | STRING
+                 | VARARG
                  | expresion_prefijo'''
     if p.slice[1].type == 'NIL':
         p[0] = None
@@ -396,6 +409,7 @@ def p_expresion_binaria(p):
 def p_expresion_unaria(p):
     '''expresion : NOT expresion
                  | LEN expresion
+                 | BITXOR expresion %prec NOT
                  | MINUS expresion %prec NOT'''
     p[0] = (p[1], p[2], p.lineno(1))
 
