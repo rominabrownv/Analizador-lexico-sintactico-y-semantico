@@ -342,3 +342,326 @@ def revisar_expr(dato, amb):
             revisar_expr(parte, amb)
             
 # ========================
+
+
+# ============ Joseph (reglas semánticas 3 y 4) ============
+
+OPERADORES_ARITMETICOS = {'+', '-', '*', '/', '//', '%', '^'}
+OPERADORES_COMPARACION = {'<', '>', '<=', '>='}
+
+errores_operaciones = []
+
+def error_operacion(linea, mensaje):
+    errores_operaciones.append((linea, mensaje))
+
+def es_cadena_numerica(valor_str):
+    # En Lua, las cadenas literales vienen con comillas ("70", '3.14', [[10]])
+    texto = valor_str.strip()
+    if (texto.startswith('"') and texto.endswith('"')) or (
+            texto.startswith("'") and texto.endswith("'")):
+        texto = texto[1:-1].strip()
+    elif texto.startswith('[[') and texto.endswith(']]'):
+        texto = texto[2:-2].strip()
+    if not texto:
+        return False
+    try:
+        float(texto)
+        return True
+    except ValueError:
+        try:
+            int(texto, 16)
+            return True
+        except ValueError:
+            return False
+
+
+def obtener_linea_expr(nodo):
+    if isinstance(nodo, tuple) and nodo:
+        # Si el nodo binario/unario trae la línea al final
+        if nodo[0] in OPERADORES_ARITMETICOS | OPERADORES_COMPARACION | {'..'} and len(nodo) >= 4 and isinstance(nodo[-1], int):
+            return nodo[-1]
+        if nodo[0] == '-' and len(nodo) == 3 and isinstance(nodo[-1], int):
+            return nodo[-1]
+        if nodo[0] == 'identificador' and len(nodo) >= 3 and isinstance(nodo[2], int):
+            return nodo[2]
+        for elem in nodo[1:]:
+            linea = obtener_linea_expr(elem)
+            if linea > 0:
+                return linea
+    elif isinstance(nodo, list):
+        for elem in nodo:
+            linea = obtener_linea_expr(elem)
+            if linea > 0:
+                return linea
+    return 0
+
+
+def inferir_tipo(expr, tabla_tipos):
+    """
+    Infere el tipo estático de una expresión cuando es posible determinarlo.
+    Posibles retornos: 'number', 'string', 'boolean', 'nil', 'table', 'function', o None.
+    """
+    if expr is None:
+        return 'nil'
+    if isinstance(expr, bool):
+        return 'boolean'
+    if isinstance(expr, (int, float)):
+        return 'number'
+    if isinstance(expr, str):
+        if expr == 'nil':
+            return 'nil'
+        if expr in ('true', 'false'):
+            return 'boolean'
+        return 'string'
+
+    if not isinstance(expr, tuple) or not expr:
+        return None
+
+    op = expr[0]
+
+    if op == 'identificador':
+        return tabla_tipos.get(expr[1])
+
+    if op in ('arreglo', 'tabla'):
+        return 'table'
+
+    if op == 'funcion_anonima':
+        return 'function'
+
+    if op == 'convertir_a_numero':
+        return 'number'
+
+    if op == 'convertir_a_cadena':
+        return 'string'
+
+    if op == '#':
+        return 'number'
+
+    if op == 'not':
+        return 'boolean'
+
+    if op in {'==', '~='} | OPERADORES_COMPARACION:
+        return 'boolean'
+
+    if op == '..':
+        return 'string'
+
+    # Menos unario: ('-', operando) o ('-', operando, linea)
+    if op == '-' and (len(expr) == 2 or (len(expr) == 3 and isinstance(expr[2], int))):
+        t = inferir_tipo(expr[1], tabla_tipos)
+        if t == 'number' or (t == 'string' and isinstance(expr[1], str) and es_cadena_numerica(expr[1])):
+            return 'number'
+        return None
+
+    # Operadores aritméticos binarios
+    if op in OPERADORES_ARITMETICOS and len(expr) >= 3:
+        t_izq = inferir_tipo(expr[1], tabla_tipos)
+        t_der = inferir_tipo(expr[2], tabla_tipos)
+        izq_valido = (t_izq == 'number') or (
+            t_izq == 'string' and isinstance(expr[1], str) and es_cadena_numerica(expr[1])
+        )
+        der_valido = (t_der == 'number') or (
+            t_der == 'string' and isinstance(expr[2], str) and es_cadena_numerica(expr[2])
+        )
+        if izq_valido and der_valido:
+            return 'number'
+        return None
+
+    return None
+
+
+def validar_expresion_ops(nodo, tabla_tipos):
+    if isinstance(nodo, list):
+        for item in nodo:
+            validar_expresion_ops(item, tabla_tipos)
+        return
+
+    if not isinstance(nodo, tuple) or not nodo:
+        return
+
+    op = nodo[0]
+
+    # Caso especial: menos unario ('-', operando) o ('-', operando, linea)
+    if op == '-' and (len(nodo) == 2 or (len(nodo) == 3 and isinstance(nodo[2], int))):
+        operando = nodo[1]
+        validar_expresion_ops(operando, tabla_tipos)
+        tipo_op = inferir_tipo(operando, tabla_tipos)
+        if tipo_op is not None:
+            es_num_str = (tipo_op == 'string' and isinstance(operando, str) and es_cadena_numerica(operando))
+            if tipo_op != 'number' and not es_num_str:
+                error_operacion(
+                    obtener_linea_expr(nodo),
+                    "no se puede aplicar '-' unario a '%s'." % tipo_op
+                )
+        return
+
+    # Operadores binarios
+    if op in (OPERADORES_ARITMETICOS | OPERADORES_COMPARACION | {'..'}) and len(nodo) >= 3:
+        izq, der = nodo[1], nodo[2]
+        validar_expresion_ops(izq, tabla_tipos)
+        validar_expresion_ops(der, tabla_tipos)
+
+        tipo_izq = inferir_tipo(izq, tabla_tipos)
+        tipo_der = inferir_tipo(der, tabla_tipos)
+        linea = obtener_linea_expr(nodo)
+
+        # REGLA 3: Operandos aritméticos válidos
+        if op in OPERADORES_ARITMETICOS:
+            izq_ok = (tipo_izq is None or tipo_izq == 'number' or
+                      (tipo_izq == 'string' and isinstance(izq, str) and es_cadena_numerica(izq)))
+            der_ok = (tipo_der is None or tipo_der == 'number' or
+                      (tipo_der == 'string' and isinstance(der, str) and es_cadena_numerica(der)))
+
+            if not izq_ok or not der_ok:
+                t1 = tipo_izq if tipo_izq is not None else 'desconocido'
+                t2 = tipo_der if tipo_der is not None else 'desconocido'
+                error_operacion(
+                    linea,
+                    "no se puede aplicar '%s' entre '%s' y '%s'." % (op, t1, t2)
+                )
+
+        # REGLA 4A: Concatenación (..) solo admite string o number
+        elif op == '..':
+            izq_ok = tipo_izq is None or tipo_izq in ('string', 'number')
+            der_ok = tipo_der is None or tipo_der in ('string', 'number')
+            if not izq_ok or not der_ok:
+                t1 = tipo_izq if tipo_izq is not None else 'desconocido'
+                t2 = tipo_der if tipo_der is not None else 'desconocido'
+                error_operacion(
+                    linea,
+                    "no se puede concatenar '%s' con '%s'." % (t1, t2)
+                )
+
+        # REGLA 4B: Comparación (<, >, <=, >=) exige ambos number o ambos string
+        elif op in OPERADORES_COMPARACION:
+            if tipo_izq is not None and tipo_der is not None:
+                ambos_num = (tipo_izq == 'number' and tipo_der == 'number')
+                ambos_str = (tipo_izq == 'string' and tipo_der == 'string')
+                if not (ambos_num or ambos_str):
+                    error_operacion(
+                        linea,
+                        "no se puede comparar '%s' con '%s'." % (tipo_izq, tipo_der)
+                    )
+        return
+
+    # Recorrer cualquier otro nodo tupla (llamadas, tablas, etc.)
+    for parte in nodo[1:]:
+        validar_expresion_ops(parte, tabla_tipos)
+
+
+def revisar_bloque_ops(bloque, tabla_tipos):
+    if not bloque:
+        return
+    for s in bloque:
+        revisar_sentencia_ops(s, tabla_tipos)
+
+
+def revisar_sentencia_ops(s, tabla_tipos):
+    if not isinstance(s, tuple) or not s:
+        return
+    tipo = s[0]
+
+    if tipo in ('declaracion_local', 'declaracion_global'):
+        nombres = s[1]
+        valores = s[2]
+        if valores:
+            validar_expresion_ops(valores, tabla_tipos)
+            for idx, item in enumerate(nombres):
+                nombre = item[0] if isinstance(item, tuple) else item
+                if idx < len(valores):
+                    tabla_tipos[nombre] = inferir_tipo(valores[idx], tabla_tipos)
+                else:
+                    tabla_tipos[nombre] = 'nil'
+        else:
+            for item in nombres:
+                nombre = item[0] if isinstance(item, tuple) else item
+                tabla_tipos[nombre] = 'nil'
+
+    elif tipo == 'asignacion_simple':
+        destino, valor = s[1], s[2]
+        validar_expresion_ops(destino, tabla_tipos)
+        validar_expresion_ops(valor, tabla_tipos)
+        if isinstance(destino, tuple) and destino[0] == 'identificador':
+            tabla_tipos[destino[1]] = inferir_tipo(valor, tabla_tipos)
+
+    elif tipo == 'multi_asignacion':
+        destinos, valores = s[1], s[2]
+        validar_expresion_ops(destinos, tabla_tipos)
+        validar_expresion_ops(valores, tabla_tipos)
+        for idx, destino in enumerate(destinos):
+            if isinstance(destino, tuple) and destino[0] == 'identificador':
+                if idx < len(valores):
+                    tabla_tipos[destino[1]] = inferir_tipo(valores[idx], tabla_tipos)
+                else:
+                    tabla_tipos[destino[1]] = 'nil'
+
+    elif tipo == 'crear_pila':
+        tabla_tipos[s[1]] = 'table'
+
+    elif tipo == 'crear_lista_enlazada':
+        validar_expresion_ops(s[2], tabla_tipos)
+        tabla_tipos[s[1]] = 'table'
+
+    elif tipo == 'insertar_en_pila':
+        validar_expresion_ops(s[2], tabla_tipos)
+
+    elif tipo == 'ciclo_for_numerico':
+        validar_expresion_ops([s[2], s[3], s[4]], tabla_tipos)
+        ambito_local = dict(tabla_tipos)
+        ambito_local[s[1]] = 'number'
+        revisar_bloque_ops(s[5], ambito_local)
+
+    elif tipo == 'ciclo_for_generico':
+        validar_expresion_ops(s[2], tabla_tipos)
+        ambito_local = dict(tabla_tipos)
+        for nombre in s[1]:
+            ambito_local[nombre] = None
+        revisar_bloque_ops(s[3], ambito_local)
+
+    elif tipo == 'bucle_while':
+        validar_expresion_ops(s[1], tabla_tipos)
+        revisar_bloque_ops(s[2], dict(tabla_tipos))
+
+    elif tipo == 'bucle_repeat':
+        ambito_local = dict(tabla_tipos)
+        revisar_bloque_ops(s[1], ambito_local)
+        validar_expresion_ops(s[2], ambito_local)
+
+    elif tipo == 'condicional_if':
+        validar_expresion_ops(s[1], tabla_tipos)
+        revisar_bloque_ops(s[2], dict(tabla_tipos))
+        for cond, bloque_elseif in s[3]:
+            validar_expresion_ops(cond, tabla_tipos)
+            revisar_bloque_ops(bloque_elseif, dict(tabla_tipos))
+        if s[4] is not None:
+            revisar_bloque_ops(s[4], dict(tabla_tipos))
+
+    elif tipo in ('funcion', 'funcion_local', 'funcion_variadica', 'funcion_variadica_con_parametros'):
+        if tipo != 'funcion_variadica':
+            tabla_tipos[s[1]] = 'function'
+        ambito_fn = dict(tabla_tipos)
+        if tipo in ('funcion', 'funcion_local', 'funcion_variadica_con_parametros'):
+            for param in s[2]:
+                ambito_fn[param] = None
+        revisar_bloque_ops(s[-1], ambito_fn)
+
+    else:
+        validar_expresion_ops(s[1:], tabla_tipos)
+
+
+def verificar_operaciones(programa):
+    del errores_operaciones[:]
+    if programa:
+        revisar_bloque_ops(programa, {})
+    errores_operaciones.sort()
+    return [
+        'Error semántico (operaciones) en la línea %d: %s' % (l, m)
+        for l, m in errores_operaciones
+    ]
+
+def analizar_semantica(programa):
+    errores = []
+    errores.extend(verificar_identificadores(programa))
+    errores.extend(verificar_operaciones(programa))
+    errores.extend(verificar_control(programa))
+    return errores

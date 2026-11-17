@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 
 import lexer
 import parser as analizador_sintactico
+import semantico as analizador_semantico
 
 
 # Crear carpeta de logs
@@ -34,30 +35,33 @@ fecha_hora = datetime.now(zona_horaria).strftime("%Y-%m-%d-%Hh-%M")
 tokens, errores_lexicos = lexer.analizar(codigo)
 
 # Ejecutar análisis sintáctico
-errores_sintacticos = analizador_sintactico.analizar_sintaxis(codigo)
+arbol_sintactico, errores_sintacticos = analizador_sintactico.analizar_sintaxis(codigo)
+
+# Ejecutar análisis semántico sobre el AST generado
+errores_semanticos = analizador_semantico.analizar_semantica(arbol_sintactico)
 
 # Crear nombre del log sintáctico
-ruta_log = os.path.join(carpeta_logs, f"sintactico-{usuario}-{fecha_hora}.txt")
+ruta_log = os.path.join(carpeta_logs, f"semantico-{usuario}-{fecha_hora}.txt")
 if os.path.exists(ruta_log):
     sufijo = 2
     while os.path.exists(
-        os.path.join(carpeta_logs, f"sintactico-{usuario}-{fecha_hora}-{sufijo}.txt")
+        os.path.join(carpeta_logs, f"semantico-{usuario}-{fecha_hora}-{sufijo}.txt")
     ):
         sufijo += 1
     ruta_log = os.path.join(
-        carpeta_logs, f"sintactico-{usuario}-{fecha_hora}-{sufijo}.txt"
+        carpeta_logs, f"semantico-{usuario}-{fecha_hora}-{sufijo}.txt"
     )
 
-# Guardar errores sintácticos
+# Guardar errores semanticos
 with open(ruta_log, "w", encoding="utf-8") as archivo:
-    archivo.write("========== ANALISIS SINTACTICO ==========\n")
+    archivo.write("========== ANALISIS SEMÁNTICO ==========\n")
     archivo.write(f"Usuario: {usuario}\n")
     archivo.write(f"Fecha: {fecha_hora}\n")
     archivo.write(f"Archivo analizado: {ruta}\n")
-    archivo.write("\n========== ERRORES SINTACTICOS ==========\n")
+    archivo.write("\n========== ERRORES SEMÁNTICOS ==========\n")
 
-    if errores_sintacticos:
-        for error in errores_sintacticos:
+    if errores_semanticos:
+        for error in errores_semanticos:
             archivo.write(f"{error}\n")
     else:
         archivo.write("No se encontraron errores sintacticos.\n")
@@ -67,4 +71,5 @@ print("\n========== RESULTADOS ==========")
 print(f"Tokens encontrados: {len(tokens)}")
 print(f"Errores léxicos: {len(errores_lexicos)}")
 print(f"Errores sintácticos: {len(errores_sintacticos)}")
-print(f"\nLog sintáctico generado: {ruta_log}")
+print(f"Errores semánticos: {len(errores_semanticos)}")
+print(f"Log semántico generado: {ruta_log}")

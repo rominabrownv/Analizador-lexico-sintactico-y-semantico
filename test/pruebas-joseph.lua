@@ -114,6 +114,22 @@ local edad_ingresada = io.read()
 
 print("Datos procesados correctamente para la versión de Lua:", nombre)
 
+-- Parte Semántica
+-- Reglas 3 y 4: Operaciones permitidas (aritméticas, concatenación y comparación)
+
+print("--- PRUEBA SEMÁNTICA 1: Operandos Aritméticos Válidos (Regla 3) ---")
+local base_num = 25
+local altura_num = 4
+local area_valida = (base_num * altura_num) / 2
+local coercion_valida = "70" + 5
+local potencia_negativa = -base_num ^ 2
+
+print("--- PRUEBA SEMÁNTICA 2: Concatenación y Comparación Compatibles (Regla 4) ---")
+local etiqueta_total = "Total calculado: " .. 250
+local comparacion_numerica = (base_num > altura_num) and (coercion_valida >= 75)
+local comparacion_cadenas = ("alfa" < "beta") and ("Lua" <= "Lua 5.5")
+
+
 -- Casos de prueba de error
 --lexico
 local @caracter_invalido = 99
@@ -123,3 +139,11 @@ if x > 5 then
     print("Falta el end de este bloque if")
 
 local a = ,20
+
+-- semantico
+local error_aritmetico_bool = true + 5
+local error_aritmetico_tabla = {} * 2
+local error_aritmetico_str = "hola" - 10
+local error_concat_nil = "Valor: " .. nil
+local error_concat_bool = "Estado: " .. false
+local error_comparacion_tipos = 3 < "cinco"

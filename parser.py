@@ -69,7 +69,7 @@ def p_sentencia_local(p):
     nombres, valores = p[2], p[3]
     if (len(nombres) == 1 and es_nombre_pila(nombres[0][0])
             and valores == [('arreglo', [])]):
-        p[0] = ('crear_pila', nombres[0][0])
+        p[0] = ('crear_pila', nombres[0][0], True, p.lineno(1))
     else:
         p[0] = ('declaracion_local', nombres, valores)
 
@@ -360,7 +360,14 @@ def p_expresion_basica(p):
                  | FLOAT
                  | STRING
                  | expresion_prefijo'''
-    p[0] = p[1]
+    if p.slice[1].type == 'NIL':
+        p[0] = None
+    elif p.slice[1].type == 'TRUE':
+        p[0] = True
+    elif p.slice[1].type == 'FALSE':
+        p[0] = False
+    else:
+        p[0] = p[1]
 
 def p_expresion_binaria(p):
     '''expresion : expresion PLUS expresion
@@ -384,13 +391,13 @@ def p_expresion_binaria(p):
                  | expresion BITXOR expresion
                  | expresion LSHIFT expresion
                  | expresion RSHIFT expresion'''
-    p[0] = (p[2], p[1], p[3])
+    p[0] = (p[2], p[1], p[3], p.lineno(2))
 
 def p_expresion_unaria(p):
     '''expresion : NOT expresion
                  | LEN expresion
                  | MINUS expresion %prec NOT'''
-    p[0] = (p[1], p[2])
+    p[0] = (p[1], p[2], p.lineno(1))
 
 # TABLAS (ESTRUCTURA DE DATOS)
 
@@ -448,5 +455,5 @@ parser = yacc.yacc(write_tables=False, debug=False)
 def analizar_sintaxis(codigo):
     del errores_sintacticos[:]
     analizador_lexico.lexer.lineno = 1
-    parser.parse(codigo, lexer=analizador_lexico.lexer)
-    return list(errores_sintacticos)
+    arbol = parser.parse(codigo, lexer=analizador_lexico.lexer)
+    return arbol, list(errores_sintacticos)

@@ -1,0 +1,12 @@
+========== ANALISIS SEMÁNTICO ==========
+Usuario: Jecs86
+Fecha: 2026-11-16-20h-28
+Archivo analizado: test\pruebas-joseph.lua
+
+========== ERRORES SEMÁNTICOS ==========
+Error semántico (operaciones) en la línea 144: no se puede aplicar '+' entre 'boolean' y 'number'.
+Error semántico (operaciones) en la línea 145: no se puede aplicar '*' entre 'table' y 'number'.
+Error semántico (operaciones) en la línea 146: no se puede aplicar '-' entre 'string' y 'number'.
+Error semántico (operaciones) en la línea 147: no se puede concatenar 'string' con 'nil'.
+Error semántico (operaciones) en la línea 148: no se puede concatenar 'string' con 'boolean'.
+Error semántico (operaciones) en la línea 149: no se puede comparar 'number' con 'string'.
