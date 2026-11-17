@@ -88,13 +88,3 @@ local function doble(n)
     return r
 end
 print(doble(total), PI)
-
-PI = 3.15
-PI, total = 1, 2
-print(puntaje)
-print(r)
-pila = {}
-local pila2 = {}
-pila2[#pila2 + 1] = 5
-nodo = { valor = 1, siguiente = nil }
-noexiste(3)

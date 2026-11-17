@@ -64,7 +64,7 @@ with open(ruta_log, "w", encoding="utf-8") as archivo:
         for error in errores_semanticos:
             archivo.write(f"{error}\n")
     else:
-        archivo.write("No se encontraron errores sintacticos.\n")
+        archivo.write("No se encontraron errores semánticos.\n")
 
 # Mostrar resultados
 print("\n========== RESULTADOS ==========")

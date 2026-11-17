@@ -1,0 +1,7 @@
+========== ANALISIS SEMÁNTICO ==========
+Usuario: rominabrownv
+Fecha: 2026-11-16-21h-15
+Archivo analizado: test/AlgoritmoInicialDePrueba1.lua
+
+========== ERRORES SEMÁNTICOS ==========
+No se encontraron errores semánticos.
